@@ -15,12 +15,12 @@ def create_nbit_dset(n):
     r = n % 8
     nf = n // 8
     if r == 0:
-        lower_bits = create_nbit_dset(8)
+        lower_bits = create_8bit_dset(8)
         nf -= 1
     else:
-        lower_bits = create_nbit_dset(r)
+        lower_bits = create_8bit_dset(r)
     for _ in range(nf):
-        upper_bits = np.kron(create_nbit_dset(8), np.ones((2**lower_bits.shape[1], 1), dtype=np.uint8))
+        upper_bits = np.kron(create_8bit_dset(8), np.ones((2**lower_bits.shape[1], 1), dtype=np.uint8))
         lower_bits = np.tile(lower_bits, (256, 1))
         lower_bits = np.concatenate((lower_bits, upper_bits), axis=1)
     return lower_bits

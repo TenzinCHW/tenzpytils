@@ -1,3 +1,3 @@
-from bitwise import *
-from constrained_mp import *
+from .bitwise import *
+from .constrained_mp import *
 

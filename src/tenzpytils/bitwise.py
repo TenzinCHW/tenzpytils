@@ -1,4 +1,5 @@
 import numpy as np
+from itertools import product
 
 
 def create_8bit_dset(n):

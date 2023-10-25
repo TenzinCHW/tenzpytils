@@ -1,5 +1,5 @@
 import numpy as np
-from itertools import product
+import itertools
 
 
 def create_8bit_dset(n):
@@ -34,7 +34,7 @@ def create_ndiv2_ternary_dataset(n):
 def create_ternary_dataset(n):
     choose_from = tuple(np.array([[0, 0], [0, 1], [1, 0]], dtype=np.uint8)[i, :] for i in range(3))
     res = np.zeros((3**n, 2*n), np.uint8)
-    for i, comb in enumerate(product([0, 1, 2], repeat=n)):
+    for i, comb in enumerate(itertools.product([0, 1, 2], repeat=n)):
         for j, c in enumerate(comb):
             res[i, 2*j:2*j+2] = choose_from[c]
     return res

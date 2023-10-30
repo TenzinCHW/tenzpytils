@@ -45,6 +45,17 @@ def sort_bin_mat(mat):
     return mat[np.lexsort([mat[:, i] for i in range(mat.shape[1])])]
 
 
+def remove_pct(data, pct=0.01):
+    counts = data['counts']
+    patches = data['patches']
+    for i in range(2, len(np.unique(counts))):  # TODO this is a bug. Need to find a better way to weed out low prob states
+        mask = counts < i
+        if counts[mask].sum() / counts.sum() > pct:
+            mask = counts >= i
+            return patches[mask], counts[mask]
+    return patches, counts
+
+
 def neighbours(v, n):
     '''Produces all neighbours of binary vector `v`.'''
     res = []

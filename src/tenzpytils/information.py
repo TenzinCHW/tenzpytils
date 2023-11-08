@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def kl_div(p1, p2):
     p2p = p2 + 1e-10
     p2p /= p2p.sum()
